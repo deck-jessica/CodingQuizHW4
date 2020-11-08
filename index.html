@@ -7,23 +7,25 @@
     <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+    <nav class="navbar">
+        <div class="high-score">View High Scores</div>
+    </nav>
     <h1>Coding Basics Quiz</h1>
     <h3>Press start to begin the quiz!</h3>
+    <table class="timer" style="visibility: hidden;">
+        <tr>
+            <td>Time left in Game: </td>
+            <td> <span id="gameTimer"></span></td>
+        </tr>
+    </table>
     <div class="start-button"><button>Begin Quiz</button></div>
 
     <div class="quiz-box">
         <header>
             <div class="quiz-title">Coding Quiz on Javascript</div>
-            <div class="timer">
-                <div class="timer-text">Time Left</div>
-                <div class="timer-sec">90</div>
-            </div>
         </header>
         <section>
-            <div class="ques-text">
-                <span class="question"></span>
-            </div>
-            <div class="ans-list"></div>
+            <div class="ques-text"></div>     
         </section>
     </div>
 </body>
