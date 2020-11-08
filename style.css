@@ -1,0 +1,20 @@
+* {
+
+}
+
+.start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.start-button button {
+    font-size: 25px;
+    font-weight: 400;
+    color: green;
+    padding: 15px 30px;
+    background: greenyellow;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
