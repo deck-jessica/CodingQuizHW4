@@ -6,27 +6,34 @@
     <title>Coding Quiz</title>
     <link rel="stylesheet" href="./style.css" />
 </head>
-<body>
+<header>
     <nav class="navbar">
         <div class="high-score">View High Scores</div>
     </nav>
     <h1>Coding Basics Quiz</h1>
-    <h3>Press start to begin the quiz!</h3>
-    <table class="timer" style="visibility: hidden;">
+    <table id="timer" class="hide" style="visibility: hidden;">
         <tr>
             <td>Time left in Game: </td>
             <td> <span id="gameTimer"></span></td>
         </tr>
     </table>
-    <div class="start-button"><button>Begin Quiz</button></div>
-
-    <div class="quiz-box">
-        <header>
-            <div class="quiz-title">Coding Quiz on Javascript</div>
-        </header>
-        <section>
-            <div class="ques-text"></div>     
-        </section>
+    </header>
+<body>    
+    <div class="container">
+    <div id="question-box" class="hide">
+        <div id="questiontxt">Question</div>
+        <div id="answerbtn" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
+        </div>
+    </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Begin Quiz</button>
+            <button id="next-btn" class="next-btn btn hide">Next Question</button>
+        </div>
     </div>
 </body>
+<script src="script.js"></script>
 </html>
