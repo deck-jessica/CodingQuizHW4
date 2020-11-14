@@ -1,61 +1,120 @@
 var questions = [{
     title: "Which element of HTML do we put the Javascript inside of?",
-    answers: [{text: '<scripting>', correct: false}, 
-                {text: '<script>', correct: true},
-                {text: '<javascript>', correct: false},
-                {text: '<js>', correct: false}] },
+    choices: ["<scripting>", "<script>","<javascript>","<js>"],
+    answer: "<script>" }, 
     { title: "Where is the correct place to insert Javascript in HTML?",
-        choices: ["the <head> section", "the <body> section", "Both the head and body sections are correct"],
-        correctAnswer: 0 },
-   {  title: "How do you write 'Hello World' in an alert box?",
-        choices: ["alertBox('Hello World');", "msgBox('Hello World');","msg('Hello World');","alert('Hello World');"],
-         correctAnswer: 3 },
-
+                choices: ["the <head> section", 
+                            "the <body> section", "both are true"],
+                answer: "the <head> section"},            
+    { title: "How do you write 'Hello World' in an alert box?",
+        choices: ["alertBox('Hello World');",  
+                  "msgBox('Hello World');",
+                     "msg('Hello World');", 
+                  "alert('Hello World');"], 
+                  answer: "alert('Hello World');" },
+    { title: "How do you write a function in Javascript?",
+        choices: ["function = myFunction()", "function:myFunction()", "function myFunction()"],
+        answer: "function myFunction()"}
 ]
+
+
 var startButton = document.getElementById('start-btn');
-var questionCont = document.getElementById('question-box');
+var submitButton = document.querySelector("button.submitBtn");
+var secondsLeft = (questions.length * 20 + 1);
+var timerEl = document.getElementById("timer");
+var submitScore = document.querySelector("#submit-score");
+var userScore = document.getElementById('user-score');
+var userName;
+var questionTitle = document.getElementById('questiontxt');
+var answerChoice = document.getElementById('answers');
 
-var questionEl = document.getElementById('questiontxt');
-var answerButtonsEl = document.getElementById('answerbtn');
+var questionNumb = -1;
+var answer;
 
-var shuffleQuestions, currentQuestionIndex;
+function startTime () {
+    document.getElementById('start-btn').classList.add('hide');
+    document.getElementById('question-box').classList.remove('hide');
 
-startButton.addEventListener('click', startGame)
+    setTimer();
 
-function startGame() {
-    startButton.classList.add('hide');
-    questionCont.classList.remove('hide');
-    shuffleQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0;
-    setNextQuestion();
+    getQuestions();
 }
 
-function setNextQuestion() {
-    showQuestion(shuffleQuestions[currentQuestionIndex])
-}
-function showQuestion(questions) {
-    questionEl.innerText = questions.title;
-    title.answers.forEach(answer => {
-        var button = document.createElement('button');
-        button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
+function setTimer() {
+
+    var countdown = setInterval(function () {
+        secondsLeft--;
+        timerEl.textContent = "Time: " + secondsLeft;
+
+        if (secondsLeft === 0) {
+            clearInterval(countdown);
+            setTimeout(displayScore, 500);
         }
-        button.addEventListener('click', selectAnswer);
-        answerButtonsEl.appendChild(button)
-    })
-}
-function selectAnswer() {
-
+    }, 1000);
 }
 
+function getQuestions() {
+    questionNumber++;
+    answer = questions[questionNumber].answer;
+
+    questionTitle.textContent = questions[questionNumber].title;
+    answerChoice.innerHTML = "";
+
+    var choices = questions[questionNumber].choices;
+    for (var i=0; i < choices.length; i++ ) {
+        var nextAnswer = document.createElement("button");
+
+        nextAnswer.textContent = choices[i];
+        answerBtn = answerChoice.appendChild(nextAnswer)
+    }
+}
+
+function displayScore() {
+    document.getElementById("question-box").classList.add("hide");
+    document.getElementById("submit-score").classList.remove('hide');
+    userScore.textContent = "Final Score: " + secondsLeft;
+}
+
+startButton.addEventListener('click', setTimer);
+submitButton.addEventListener('click', function (event) {
+    event.stopPropagation();
+    addScore();
+}); //dont forget to store scores somehow for high scores
+
+function addScore () {
+    userName = document.getElementById('userName').value;
+
+    var newScore = {
+        name: userName, 
+        score: secondsLeft
+    };
+    localStorage.setItem("newScore", JSON.stringify(newScore));
+}
+var pEl = document.getElementById("feedback");
+
+function hideFeed () {
+    pEl.classList.add('hide');
+}
+
+function showFeed () {
+    pEl.classList.remove('hide');
+}
+
+answerChoice.addEventListener('click', function (event) {
+    if (answer === event.target.textContent) {
+        pEl.innerHTML = "RIGHT";
+        setTimeout(hideFeed, 1200);
+        showFeed();
+    } else {
+        pEl.innerHTML = "WRONG";
+        setTimeout(hideFeed, 1200);
+        secondsLeft = secondsLeft - 10;
+        showFeed();
+    }
+    getQuestions();
+});
 
 
 
 
 
-
-
-var highScore = document.querySelector('#highscore');
-var gameTimer = document.querySelector('#gameTimer');
-var timer = document.querySelector('#timers');

@@ -4,6 +4,9 @@
 }
 
 :root {
+    --hue-neutral: greenyellow;
+    --hue-wrong: 0;
+    --hue-correct: 145;
 
 }
 header {
@@ -12,6 +15,7 @@ header {
 
 }
 body {
+    --hue: var(--hue-neutral);
     padding: 0;
     margin: 0;
     display: flex;
@@ -21,13 +25,12 @@ body {
     align-items: center;
 }
 
-
- .btn {
+ #start-btn {
     font-size: 25px;
     font-weight: 400;
     color: green;
     padding: 15px 30px;
-    background: greenyellow;
+    background: rgb(50, 66, 26);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -36,12 +39,7 @@ body {
 .btn:hover {
     border-color: black;
 }
-.btn.correct {
 
-}
-.btn.wrong {
-
-}
 .container {
     width: 800px;
     max-width: 80%;
@@ -57,11 +55,5 @@ body {
 .hide {
     display: none;
 }
-.btn-grid {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin: 20px 0;
 
-}
 

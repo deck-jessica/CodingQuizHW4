@@ -11,28 +11,36 @@
         <div class="high-score">View High Scores</div>
     </nav>
     <h1>Coding Basics Quiz</h1>
-    <table id="timer" class="hide" style="visibility: hidden;">
-        <tr>
-            <td>Time left in Game: </td>
-            <td> <span id="gameTimer"></span></td>
-        </tr>
-    </table>
+  <span id="timer">Time: 0</span>
     </header>
 <body>    
-    <div class="container">
-    <div id="question-box" class="hide">
+    
+
+    <div id="question-box" class="container hide">
         <div id="questiontxt">Question</div>
-        <div id="answerbtn" class="btn-grid">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
+        <ul id="answers">
+            <li class="answerChoice">A) </li>
+            <li class="answerChoice">B) </li>
+            <li class="answerChoice">C) </li>
+            <li class="answerChoice">D) </li>
+        </ul>
+        <p id="feedback" ></p>
+    </div>
+    
+    
+    <div class="container hide" id="submit-score">
+                <h2>Finished!</h2>
+                <p id="user-score"> </p>
+                <form class="form-group">
+                    <label for="new-score">Enter your name: </label>
+                    <input type="text" id="userName">
+                    <button type="button" class="btn submitBtn">Join Hall Of Fame</button>
+                </form>
+            </div>
         </div>
     </div>
         <div class="controls">
-            <button id="start-btn" class="start-btn btn">Begin Quiz</button>
-            <button id="next-btn" class="next-btn btn hide">Next Question</button>
-        </div>
+            <button id="start-btn" >Begin Quiz</button>
     </div>
 </body>
 <script src="script.js"></script>
