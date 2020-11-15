@@ -13,7 +13,7 @@ var questions = [{
                   "alert('Hello World');"], 
                   answer: "alert('Hello World');" },
     { title: "How do you write a function in Javascript?",
-        choices: ["function = myFunction()", "function:myFunction()", "function myFunction()"],
+        choices: ["function = myFunction()", "function:myFunction()", "define myFunction() function","function myFunction()"],
         answer: "function myFunction()"}
 ]
 
@@ -39,14 +39,15 @@ function startTime () {
 
     getQuestions();
 }
+var countdown;
 
 function setTimer() {
 
-    var countdown = setInterval(function () {
+    countdown = setInterval(function () {
         secondsLeft--;
         timerEl.textContent = "Time: " + secondsLeft;
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(countdown);
             setTimeout(displayScore, 500);
         }
@@ -69,7 +70,7 @@ function getQuestions() {
         nextAnswer.textContent = choices[i];
         answerBtn = answerChoice.appendChild(nextAnswer)
     } 
-    if (questionNumb > questions.length) {
+    if (questionNumb >= questions.length) {
         return;
     }
 }
@@ -77,7 +78,7 @@ function getQuestions() {
 function displayScore() {
     document.getElementById("question-box").classList.add("hide");
     document.getElementById("submit-score").classList.remove('hide');
-    userScore.textContent = "Final Score: " + userScore.val();
+    userScore.textContent = "Final Score: " + userScore.value;
 }
 
 startButton.addEventListener('click', startTime);
