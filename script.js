@@ -20,7 +20,7 @@ var questions = [{
         answer: "var choices = ['red', 'green', 'yellow']"}    
 ]
 
-
+// set up global variables
 var startButton = document.getElementById('start-btn');
 var submitButton = document.querySelector("button.submitBtn");
 var secondsLeft = (questions.length * 20 + 1);
@@ -35,6 +35,7 @@ var highScores = document.getElementById("user-high-scores");
 var questionNumb = -1;
 var answer;
 
+// function to start the game, hide the start button and show the questions, and timer begins
 function startTime () {
     document.getElementById('start-btn').classList.add('hide');
     document.getElementById('question-box').classList.remove('hide');
@@ -57,7 +58,7 @@ function setTimer() {
         }
     }, 1000);
 }
-
+// sets the quiz questions up for display in the quiz box, restarts countdown
 function getQuestions() {
     
         questionNumb++;
@@ -83,7 +84,7 @@ if (questionNumb == questions.length) {
     } 
 }
 }
-
+// not quite working here, but function to display scores
 function displayScore() {
     document.getElementById("question-box").classList.add("hide");
     document.getElementById("submit-score").classList.remove('hide');
@@ -96,7 +97,7 @@ startButton.addEventListener('click', startTime);
 
 var userScore = document.createElement('p');
 
-
+//function to add score to local storage
 function addScore () {
     userName = document.getElementById('userName').value;
 
@@ -108,7 +109,7 @@ function addScore () {
 
 }
 var pEl = document.getElementById("feedback");
-
+// functions to show whether a question is right or wrong
 function hideFeed () {
     pEl.classList.add('hide');
 }
@@ -116,7 +117,7 @@ function hideFeed () {
 function showFeed () {
     pEl.classList.remove('hide');
 }
-
+// answering the questions listener to determine answer choice is right or wrong
 answerChoice.addEventListener('click', function (event) {
     if (answer === event.target.textContent) {
         pEl.innerHTML = "RIGHT";
@@ -131,13 +132,15 @@ answerChoice.addEventListener('click', function (event) {
     }
     getQuestions();
 });
-
+// function to add scores to high score list
 submitButton.addEventListener('click', function (event) {
     event.stopPropagation();
     displayScore();
     addScore();
+    submitScore.classList.add('hide');
+    highScores.classList.remove('hide');
     highScores.appendChild(userScore);
-}); //dont forget to store scores somehow for high scores
+}); 
 
 
 
