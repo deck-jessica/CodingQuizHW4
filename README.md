@@ -1,5 +1,5 @@
 # CodingQuizHW4
-## ## Password Generator website
+## Coding Quiz with Javascript
 
 This project was undertaken to create a coding quiz that both times and scores user responses. The quiz content could easily be changed, but this specific quiz reviews Javascript basics. Behind the scenes in the quiz, I created CSS, HTML and Javascript documents to begin the quiz, sort through the available questions, and return a score based on responses. Users are also penalized for wrong answers with a deduction of time (not score). Once the user completes the quiz, the objective is to have the scores be stored locally and presented on a high score display. This quiz also provides a simple "right" or "wrong" feedback displayed to indicate if the responses are correct or not.  
 
