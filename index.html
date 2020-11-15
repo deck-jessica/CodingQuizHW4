@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="./style.css" />
 </head>
 <header>
-    <nav class="navbar">
+    <nav class="navbar"> <!--this is where we can look at high scores from local storage-->
         <div class="high-score" id="user-high-scores">View High Scores</div>
     </nav>
     <h1>Coding Basics Quiz</h1>
-  <span id="timer">Time: 0</span>
+  <span id="timer">Time: 0</span> <!--this is where the quiz timer will be displayed-->
     </header>
 <body>    
     
 
-    <div id="question-box" class="container hide">
+    <div id="question-box" class="container hide"> <!--this is where the questions and answers will populate once start button has been clicked-->
         <div id="questiontxt">Question</div>
         <ul id="answers">
             <li class="answerChoice">A) </li>
@@ -28,7 +28,7 @@
     </div>
     
     
-    <div class="container hide" id="submit-score">
+    <div class="container hide" id="submit-score"> <!--here is where users will submit their name and high score-->
                 <h2>Finished!</h2>
                 <p id="user-score"> </p>
                 <form class="form-group">
