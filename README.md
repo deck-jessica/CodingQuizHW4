@@ -9,7 +9,7 @@ This web applicaton is also styled to be responsive to given screen size. This p
 
 This project can be viewed and used using any web browser from the link provided.
 
-[Coding Quiz](https://deck-jessica.github.io/PasswordGenHW3/)
+[Coding Quiz](https://deck-jessica.github.io/CodingQuizHW4/)
 
 ## Usage 
 
