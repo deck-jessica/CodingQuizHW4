@@ -14,7 +14,10 @@ var questions = [{
                   answer: "alert('Hello World');" },
     { title: "How do you write a function in Javascript?",
         choices: ["function = myFunction()", "function:myFunction()", "define myFunction() function","function myFunction()"],
-        answer: "function myFunction()"}
+        answer: "function myFunction()"},
+    { title: "What is the correct way to write an array in Javascript?",
+        choices: ["var choices = ['red', 'green', 'yellow']", "var choices = 'red', 'green', 'yellow'", "var choices = 1='red', 2='green', 3='yellow'"],
+        answer: "var choices = ['red', 'green', 'yellow']"}    
 ]
 
 
@@ -27,6 +30,7 @@ var userScore = document.getElementById('user-score');
 var userName;
 var questionTitle = document.getElementById('questiontxt');
 var answerChoice = document.getElementById('answers');
+var highScores = document.getElementById("user-high-scores");
 
 var questionNumb = -1;
 var answer;
@@ -57,6 +61,13 @@ function setTimer() {
 function getQuestions() {
     
         questionNumb++;
+
+if (questionNumb == questions.length) {
+            
+            clearInterval(countdown);
+            setTimeout(displayScore, 500);
+            return;
+    } else {
     
     answer = questions[questionNumb].answer;
 
@@ -70,9 +81,7 @@ function getQuestions() {
         nextAnswer.textContent = choices[i];
         answerBtn = answerChoice.appendChild(nextAnswer)
     } 
-    if (questionNumb >= questions.length) {
-        return;
-    }
+}
 }
 
 function displayScore() {
@@ -83,12 +92,10 @@ function displayScore() {
 
 startButton.addEventListener('click', startTime);
 
-submitButton.addEventListener('click', function (event) {
-    event.stopPropagation();
-    addScore();
-}); //dont forget to store scores somehow for high scores
 
-var userScore = 0;
+
+var userScore = document.createElement('p');
+userScore = 0;
 
 function addScore () {
     userName = document.getElementById('userName').value;
@@ -125,7 +132,12 @@ answerChoice.addEventListener('click', function (event) {
     getQuestions();
 });
 
-
+submitButton.addEventListener('click', function (event) {
+    event.stopPropagation();
+    displayScore();
+    addScore();
+    highScores.appendChild(userScore);
+}); //dont forget to store scores somehow for high scores
 
 
 
