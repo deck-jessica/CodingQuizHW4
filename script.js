@@ -54,41 +54,50 @@ function setTimer() {
 }
 
 function getQuestions() {
-    questionNumber++;
-    answer = questions[questionNumber].answer;
+    
+        questionNumb++;
+    
+    answer = questions[questionNumb].answer;
 
-    questionTitle.textContent = questions[questionNumber].title;
+    questionTitle.textContent = questions[questionNumb].title;
     answerChoice.innerHTML = "";
 
-    var choices = questions[questionNumber].choices;
+    var choices = questions[questionNumb].choices;
     for (var i=0; i < choices.length; i++ ) {
         var nextAnswer = document.createElement("button");
 
         nextAnswer.textContent = choices[i];
         answerBtn = answerChoice.appendChild(nextAnswer)
+    } 
+    if (questionNumb > questions.length) {
+        return;
     }
 }
 
 function displayScore() {
     document.getElementById("question-box").classList.add("hide");
     document.getElementById("submit-score").classList.remove('hide');
-    userScore.textContent = "Final Score: " + secondsLeft;
+    userScore.textContent = "Final Score: " + userScore.val();
 }
 
-startButton.addEventListener('click', setTimer);
+startButton.addEventListener('click', startTime);
+
 submitButton.addEventListener('click', function (event) {
     event.stopPropagation();
     addScore();
 }); //dont forget to store scores somehow for high scores
+
+var userScore = 0;
 
 function addScore () {
     userName = document.getElementById('userName').value;
 
     var newScore = {
         name: userName, 
-        score: secondsLeft
+        score: userScore
     };
     localStorage.setItem("newScore", JSON.stringify(newScore));
+
 }
 var pEl = document.getElementById("feedback");
 
@@ -103,6 +112,7 @@ function showFeed () {
 answerChoice.addEventListener('click', function (event) {
     if (answer === event.target.textContent) {
         pEl.innerHTML = "RIGHT";
+        userScore++;
         setTimeout(hideFeed, 1200);
         showFeed();
     } else {

@@ -24,6 +24,10 @@ body {
     justify-content: center;
     align-items: center;
 }
+.high-scores {
+    display: flex;
+    justify-content: flex-start;
+}
 
  #start-btn {
     font-size: 25px;
