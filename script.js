@@ -95,7 +95,7 @@ startButton.addEventListener('click', startTime);
 
 
 var userScore = document.createElement('p');
-userScore = 0;
+
 
 function addScore () {
     userName = document.getElementById('userName').value;
